@@ -29,7 +29,7 @@ export default async function decorate(block) {
       displayOutOfStock: true,
       allowAllProducts: false,
       imageCarousel: false,
-      optimizeImages: true,
+      optimizeImages: false,
       imageBaseWidth: 200,
       listview: true,
       displayMode: '', // "" for plp || "PAGE" for category/catalog

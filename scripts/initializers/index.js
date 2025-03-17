@@ -7,6 +7,7 @@ import {
   setFetchGraphQlHeader,
 } from '@dropins/tools/fetch-graphql.js';
 import * as authApi from '@dropins/storefront-auth/api.js';
+import { initializers } from '@dropins/tools/initializer.js';
 
 // Libs
 import { getConfigValue, getCookie } from '../configs.js';
@@ -33,40 +34,47 @@ const persistCartDataInSession = (data) => {
 };
 
 export default async function initializeDropins() {
-  const init = async () => {
-    // Set auth headers on authenticated event
-    events.on('authenticated', setAuthHeaders);
-    // Cache cart data in session storage
-    events.on('cart/data', persistCartDataInSession, { eager: true });
+  // Set auth headers on authenticated event
+  events.on('authenticated', setAuthHeaders);
+  // Cache cart data in session storage
+  events.on('cart/data', persistCartDataInSession, { eager: true });
 
-    // on page load, check if user is authenticated
-    const token = getUserTokenCookie();
-    // set auth headers
-    setAuthHeaders(!!token);
-    // emit authenticated event if token has changed
-    events.emit('authenticated', !!token);
+  initializers.setImageParamKeys({
+    rotate: 'rotate',
+    crop: 'crop',
+    flip: 'flip',
+    size: 'size',
+    preferwebp: 'preferwebp',
+    // height: 'height',
+    // width: 'width',
+    quality: 'quality',
+    smartcrop: 'smartcrop',
+  });
 
-    // Event Bus Logger
-    events.enableLogger(true);
-    // Set Fetch Endpoint (Global)
-    setEndpoint(await getConfigValue('commerce-core-endpoint'));
+  // on page load, check if user is authenticated
+  const token = getUserTokenCookie();
+  // set auth headers
+  setAuthHeaders(!!token);
 
-    // Initialize Global Drop-ins
-    await import('./auth.js');
-    import('./cart.js');
+  // Event Bus Logger
+  events.enableLogger(true);
 
-    events.on('eds/lcp', async () => {
-      // Recaptcha
-      await import('@dropins/tools/recaptcha.js').then(({ setConfig }) => {
-        setConfig();
-      });
+  // emit authenticated event if token has changed
+  events.emit('authenticated', !!token);
+
+  // Set Fetch Endpoint (Global)
+  setEndpoint(await getConfigValue('commerce-core-endpoint'));
+
+  events.on('eds/lcp', async () => {
+    // Recaptcha
+    await import('@dropins/tools/recaptcha.js').then(({ setConfig }) => {
+      setConfig();
     });
-  };
+  });
 
-  // re-initialize on prerendering changes
-  document.addEventListener('prerenderingchange', initializeDropins);
-
-  return init();
+  // Initialize Global Drop-ins
+  await import('./auth.js');
+  import('./cart.js');
 }
 
 export function initializeDropin(cb) {

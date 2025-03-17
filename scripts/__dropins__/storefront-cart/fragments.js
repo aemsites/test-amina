@@ -165,12 +165,6 @@ const e=`
     product {
       name
       sku
-      gift_message_available
-      gift_wrapping_available
-      gift_wrapping_price {
-        currency
-        value
-      }
       thumbnail {
         url
         label
@@ -308,32 +302,6 @@ const e=`
       ...AVAILABLE_GIFT_WRAPPING_FRAGMENT
     }
     prices {
-      gift_options {
-        gift_wrapping_for_items {
-          currency
-          value
-        }
-        gift_wrapping_for_items_incl_tax {
-          currency
-          value
-        }
-        gift_wrapping_for_order {
-          currency
-          value
-        }
-        gift_wrapping_for_order_incl_tax {
-          currency
-          value
-        }
-        printed_card {
-          currency
-          value
-        }
-        printed_card_incl_tax {
-          currency
-          value
-        }
-      }
       subtotal_with_discount_excluding_tax {
         currency
         value
