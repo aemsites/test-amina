@@ -1,5 +1,5 @@
 mountpoints:
-  /: https://adobe.sharepoint.com/:f:/r/sites/HelixProjects/Shared%20Documents/sites/starter-content-commerce
+  /: https://adobe.sharepoint.com/:f:/r/sites/MagentoProduct/Shared%20Documents/Product%20Specific/AEM%20Assets%20integration/EDS%20Storefronts/test-amina?csf=1&web=1&e=A2sb5s
 
 folders:
   /products/: /products/default
