@@ -28,10 +28,6 @@ const o = `fragment REQUEST_RETURN_ORDER_FRAGMENT on Return {
   name
   sku
   only_x_left_in_stock
-  gift_wrapping_price {
-    currency
-    value
-  }
   stock_status
   thumbnail {
     label
@@ -66,9 +62,6 @@ const o = `fragment REQUEST_RETURN_ORDER_FRAGMENT on Return {
   }
 }`, t = `fragment GIFT_CARD_DETAILS_FRAGMENT on GiftCardOrderItem {
   ...PRICE_DETAILS_FRAGMENT
-  gift_message {
-    ...GIFT_MESSAGE_FRAGMENT
-  }
   gift_card {
     recipient_name
     recipient_email
@@ -77,9 +70,6 @@ const o = `fragment REQUEST_RETURN_ORDER_FRAGMENT on Return {
     message
   }
 }`, n = `fragment ORDER_ITEM_DETAILS_FRAGMENT on OrderItemInterface {
-  gift_wrapping {
-    ...GIFT_WRAPPING_FRAGMENT
-  }
   __typename
   status
   product_sku
@@ -93,9 +83,6 @@ const o = `fragment REQUEST_RETURN_ORDER_FRAGMENT on Return {
   quantity_invoiced
   quantity_refunded
   quantity_return_requested
-  gift_message {
-    ...GIFT_MESSAGE_FRAGMENT
-  }
   product_sale_price {
     value
     currency
@@ -131,32 +118,6 @@ const o = `fragment REQUEST_RETURN_ORDER_FRAGMENT on Return {
   }
 }
 ${E}`, R = `fragment ORDER_SUMMARY_FRAGMENT on OrderTotal {
-  gift_options {
-    gift_wrapping_for_items {
-      currency
-      value
-    }
-    gift_wrapping_for_items_incl_tax {
-      currency
-      value
-    }
-    gift_wrapping_for_order {
-      currency
-      value
-    }
-    gift_wrapping_for_order_incl_tax {
-      currency
-      value
-    }
-    printed_card {
-      currency
-      value
-    }
-    printed_card_incl_tax {
-      currency
-      value
-    }
-  }
   grand_total {
     value
     currency
@@ -275,9 +236,6 @@ ${E}`, R = `fragment ORDER_SUMMARY_FRAGMENT on OrderTotal {
   gift_receipt_included
   gift_wrapping {
     ...GIFT_WRAPPING_FRAGMENT
-  }
-  gift_message {
-    ...GIFT_MESSAGE_FRAGMENT
   }
   applied_gift_cards {
     ...APPLIED_GIFT_CARDS_FRAGMENT

@@ -1,0 +1,33 @@
+{
+  "public": {
+    "default": {
+      "commerce-core-endpoint": "https://demo1441860-oaucx3y-5v2q6twyusobg.eu-4.magentosite.cloud/graphql",
+      "commerce-endpoint": "https://catalog-service-sandbox.adobe.io/graphql",
+      "commerce-assets-enabled": "false",
+      "headers": {
+        "all": {
+          "Store": "default"
+        },
+        "cs": {
+          "Magento-Customer-Group": "1",
+          "Magento-Store-Code": "main_website_store",
+          "Magento-Store-View-Code": "default",
+          "Magento-Website-Code": "base",
+          "x-api-key": "ea08be1856f44934adcdc86edd40b1f8",
+          "Magento-Environment-Id": "257a59bd-c392-4c95-ad28-e600ae7c535e"
+        }
+      },
+      "analytics": {
+        "base-currency-code": "USD",
+        "environment": "Production",
+        "store-id": 1,
+        "store-name": "Main Website Store",
+        "store-url": "https://demo1441860-oaucx3y-5v2q6twyusobg.eu-4.magentosite.cloud",
+        "store-view-id": 1,
+        "store-view-name": "Default Store View",
+        "website-id": 1,
+        "website-name": "Main Website"
+      }
+    }
+  }
+}
